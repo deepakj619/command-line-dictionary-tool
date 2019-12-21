@@ -14,8 +14,12 @@
   "license": "ISC",
   "dependencies": {
     "commander": "^4.0.1",
+<<<<<<< HEAD
     "request": "^2.88.0",
     "request-promise": "^4.2.5"
+=======
+    "request": "^2.88.0"
+>>>>>>> 99cb54e1cf030cb04c5ed63255b957e5e08f14c2
   },
   "repository": "https://github.com/deepakj619/command-line-dictionary-tool"
 }
