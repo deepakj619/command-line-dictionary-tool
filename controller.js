@@ -1,22 +1,29 @@
 const apiKey = "b972c7ca44dda72a5b482052b1f5e13470e01477f3fb97c85d5313b3c112627073481104fec2fb1a0cc9d84c2212474c0cbe7d8e59d7b95c7cb32a1133f778abd1857bf934ba06647fda4f59e878d164";
 const baseApiHost = 'https://fourtytwowords.herokuapp.com'
 
-var request = require("request");
+var request = require("request-promise");
 
 
-var propertiesObject = { api_key:apiKey};
+var propertiesObject = {api_key:apiKey};
 
-module.exports.getDefOfWord = (word) =>{
-
+module.exports.getDefOfWord = async  (word) =>{
 
     var url = baseApiHost+"/word/"+word+"/definitions"
-    console.log(url)
-    request({url:url, qs:propertiesObject}, function(err, response, body) {
+    var result = await request({url:url, qs:propertiesObject}, function(err, response, body) {
         if(err) { console.log(err); return; }
-        console.log("Get response: " + response.statusCode);
-        console.log(response.body);
       });
-
-
+    return result;
 }
+
+
+module.exports.getSynonymsOfWord = async (word) =>{
+
+  var url = baseApiHost+"/word/"+word+"/relatedWords"
+  console.log(url)
+  var result = await request({url:url, qs:propertiesObject}, function(err, response, body) {
+      if(err) { console.log(err); return; }
+    });
+  return result;
+}
+
 
