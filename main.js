@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const commander = require('commander');
-var msg = require('./controller.js');
+var controller = require('./controller.js');
 
 const program = new commander.Command();
 
@@ -11,12 +11,53 @@ program
   .description('Command Line Dictionary Tool');
 
 program
-  .command('dict <word>')
-  .alias('defn')
+  .command('defn <word>')
+  .alias('d')
   .description('Display definitions of a given word.')
-  .action(function(name) {
-    console.log(msg.getDefOfWord(name));
+  .action(function(word) {
+
+    controller.getDefOfWord(word).then(res =>{
+
+      var data = JSON.parse(res);
+      console.log("Definiton(s) of word: "+word)
+      data.forEach(function(defData) {
+        var def = defData.text;
+        console.log(def);
+    });
+    }).catch((rejection) =>{
+      var error = rejection['statusCode'];
+      if(error == 400){
+        console.log("Word not found.Please make sure word is among 42 words.")
+      }
+    });
   });
+
+
+  program
+  .command('syn <word>')
+  .alias('s')
+  .description('Display synonyms of a given word.')
+  .action(function(word) {
+
+    controller.getSynonymsOfWord(word).then(res =>{
+
+      var data = JSON.parse(res);
+      console.log("Synonyms (s) of word: "+word)
+    //   data.forEach(function(defData) {
+    //     var def = defData.text;
+    //     console.log(def);
+    // });
+
+    console.log(data);
+    }).catch((rejection) =>{
+      var error = rejection['statusCode'];
+      if(error == 400){
+        console.log("Word not found.Please make sure word is among 42 words.")
+      }
+    });
+  });
+
+
 
 
 program.parse(process.argv);

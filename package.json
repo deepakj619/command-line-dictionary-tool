@@ -1,11 +1,21 @@
 {
-  "name": "command-line-directory-tool",
+  "name": "command-line-dictionary-tool",
   "version": "1.0.0",
-  "description": "A command line directory tool using API.",
-  "main": "index.js",
+  "preferGlobal": true,
+  "bin": {
+    "dict": "/main.js"
+  },
+  "description": "A command line dictionary tool using API.",
+  "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "deepakjain",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^4.0.1",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.5"
+  },
+  "repository": "https://github.com/deepakj619/command-line-dictionary-tool"
 }
