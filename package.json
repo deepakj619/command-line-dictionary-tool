@@ -1,0 +1,11 @@
+{
+  "name": "command-line-directory-tool",
+  "version": "1.0.0",
+  "description": "A command line directory tool using API.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "deepakjain",
+  "license": "ISC"
+}
