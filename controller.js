@@ -19,7 +19,6 @@ module.exports.getDefOfWord = async  (word) =>{
 module.exports.getSynonymsOfWord = async (word) =>{
 
   var url = baseApiHost+"/word/"+word+"/relatedWords"
-  console.log(url)
   var result = await request({url:url, qs:propertiesObject}, function(err, response, body) {
       if(err) { console.log(err); return; }
     });
