@@ -6,7 +6,7 @@ var request = require("request-promise");
 
 var propertiesObject = {api_key:apiKey};
 
-module.exports.getDefOfWord = async  (word) =>{
+module.exports.getDefOfWordApi = async  (word) =>{
 
     var url = baseApiHost+"/word/"+word+"/definitions"
     var result = await request({url:url, qs:propertiesObject}, function(err, response, body) {
@@ -16,9 +16,28 @@ module.exports.getDefOfWord = async  (word) =>{
 }
 
 
-module.exports.getRelatedWords = async (word) =>{
+module.exports.getRelatedWordsApi = async (word) =>{
 
   var url = baseApiHost+"/word/"+word+"/relatedWords"
+  var result = await request({url:url, qs:propertiesObject}, function(err, response, body) {
+      if(err) { console.log(err); return; }
+    });
+  return result;
+}
+
+module.exports.getExamplesApi = async (word) =>{
+
+  var url = baseApiHost+"/word/"+word+"/examples"
+  var result = await request({url:url, qs:propertiesObject}, function(err, response, body) {
+      if(err) { console.log(err); return; }
+    });
+  return result;
+}
+
+
+module.exports.getRandomWordApi = async () =>{
+
+  var url = baseApiHost+"/words/"+"randomWord"
   var result = await request({url:url, qs:propertiesObject}, function(err, response, body) {
       if(err) { console.log(err); return; }
     });
