@@ -41,7 +41,7 @@ program
   .description('Display synonyms of a given word.')
   .action(function(word) {
 
-    controller.getSynonymsOfWord(word).then(res =>{
+    controller.getRelatedWords(word).then(res =>{
 
       var data = JSON.parse(res);
       console.log("Synonyms (s) of word: "+word);
@@ -81,7 +81,7 @@ program
   .description('Displays antonyms  of a given word.')
   .action(function(word) {
 
-    controller.getSynonymsOfWord(word).then(res =>{
+    controller.getRelatedWords(word).then(res =>{
 
       var data = JSON.parse(res);
       console.log("Antonyms (s) of word: "+word);
