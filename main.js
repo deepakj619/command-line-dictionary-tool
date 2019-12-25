@@ -1,15 +1,61 @@
 #!/usr/bin/env node
 
 const commander = require('commander');
-var controller = require('./controller.js');
-var utility = require("./utility.js");
+const utility = require("./utility.js");
+const colors = require('colors');
 
 const program = new commander.Command();
+
+const { prompt } = require('inquirer'); 
+
+
+const questions = [
+  {
+    type : 'input',
+    name : 'word',
+    message : 'Guess a word ...'
+  },
+  {
+    type : 'input',
+    name : 'choice',
+    message : 'Enter 1 to Try Again , Enter 2 for Hint or Enter 3 to Quit'
+  },
+]
+
 
 
 program
   .version('1.0.0')
   .description('Command Line Dictionary Tool');
+
+
+program
+.command('play')
+.alias('p')
+.description('Play the guessing game !')
+.action(() =>{
+
+  prompt(questions[0]).then(answers =>{
+    var guessedWord = answers['word'];
+    utility.getPlayDataOfRandomWord().then(res => {
+      
+      var correctWords = res;
+      if (correctWords.indexOf(guessedWord) > -1) {
+        console.log(""+colors.green("You WON !!!"));
+        process.exit(0);
+      } else {
+        console.log(""+colors.red("You LOST :("));
+        utility.failedAttempt(correctWords,questions);
+      }
+
+    }).catch( (err) =>{
+      console.log(err)
+    } )
+    
+  })
+
+})
+
 
 program
   .command('defn <word>')

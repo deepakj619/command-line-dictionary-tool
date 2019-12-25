@@ -12,7 +12,9 @@ module.exports.getDefOfWordApi = async  (word) =>{
     var result = await request({url:url, qs:propertiesObject}, function(err, response, body) {
         if(err) { console.log(err); return; }
       });
-    return result;
+    return new Promise((resolve,rejection) =>{
+      return resolve(result);
+    });
 }
 
 
@@ -40,7 +42,7 @@ module.exports.getRandomWordApi = async () =>{
   var url = baseApiHost+"/words/"+"randomWord"
   var result = await request({url:url, qs:propertiesObject}, function(err, response, body) {
       if(err) { console.log(err); return; }
-    });
+    }); 
   return result;
 }
 
