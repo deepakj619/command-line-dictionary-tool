@@ -28,4 +28,6 @@ The command-line tool should have the following functions -
 
             dict full-dict-random
             
+7. Word Game: This command is used display a definition, a synonym or an antonym and ask the user to guess the word. 
+            dict play
 
